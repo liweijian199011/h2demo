@@ -1,0 +1,1 @@
+CREATE TABLE user (id int(11) DEFAULT NULL,username varchar(30) NOT NULL,password varchar(30) NOT NULL,gender tinyint(4) NOT NULL,create_time timestamp NOT NULL COMMENT '创建时间',update_time timestamp NOT NULL COMMENT '更新时间')

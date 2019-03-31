@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="encoding" value="UTF-8"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Append>true</Append>
+        <prudent>false</prudent>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %5p %c.%M:%L - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <if condition='property("spring.profiles.active").equalsIgnoreCase("online")'>
+                <then>
+                    <fileNamePattern>/opt/vipkid/${artifactId}/logs/${artifactId}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                </then>
+                <else>
+                    <fileNamePattern>logs/${artifactId}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                </else>
+            </if>
+            <maxFileSize>1024MB</maxFileSize>
+            <maxHistory>32</maxHistory>
+            <totalSizeCap>32GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %5p %c.%M:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+    <!--<appender name="CatAppender" class="com.example.h2demo.config.CatLogbackAppender"></appender>-->
+
+    <root level="INFO">
+        <!--<appender-ref ref="CatAppender" />-->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
