@@ -22,9 +22,9 @@ public class H2demoApplicationTests {
         ThreadPoolExecutor executor
                 = new ThreadPoolExecutor(1, 3, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(1));
         for (int i = 0; i < 4; i++) {
-            executor.execute(() -> {
-                System.out.println(Thread.currentThread().getName());
-            });
+//            executor.execute(() -> {
+//                System.out.println(Thread.currentThread().getName());
+//            });
         }
 	}
 }
